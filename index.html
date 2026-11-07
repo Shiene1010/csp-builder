@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chunk Soundpad — Library Builder</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0}
+    header{padding:12px 16px;background:#111;color:#fff}
+    .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    main{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px}
+    .panel{border:1px solid #ddd;border-radius:8px;overflow:hidden;background:#fff}
+    .panel header{background:#f5f5f5;color:#111;font-weight:600}
+    .panel .body{padding:10px}
+    textarea{width:100%;height:60vh;font-family:ui-monospace,Menlo,monospace;font-size:13px}
+    .chunk{padding:6px 8px;border:1px dashed #ddd;border-radius:6px;margin:6px 0}
+    .small{color:#6b7280;font-size:12px}
+    button{padding:8px 12px;border:1px solid #ccc;border-radius:6px;background:#fafafa;cursor:pointer}
+    .primary{background:#2563eb;color:#fff;border-color:#1d4ed8}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="row" style="justify-content: space-between;">
+      <div>Chunk Soundpad — Library Builder</div>
+      <div class="row">
+        <button id="btn-load-01">Load sample 01</button>
+        <button id="btn-load-02">Load sample 02</button>
+        <button id="btn-load-03">Load sample 03</button>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="panel">
+      <header class="row" style="justify-content: space-between; padding: 8px 10px;">
+        <div>Editor (Markdown)</div>
+        <div class="row">
+          <button id="btn-parse" class="primary">Preview</button>
+          <button id="btn-export">Export .clib.json</button>
+          <label class="row" style="gap:6px;align-items:center;">
+            <input type="file" id="file-import" accept="application/json" style="display:none;" />
+            <button id="btn-import">Import .clib.json</button>
+          </label>
+        </div>
+      </header>
+      <div class="body">
+        <textarea id="editor" placeholder="Paste or load an expression markdown..."></textarea>
+      </div>
+    </section>
+    <section class="panel">
+      <header style="padding:8px 10px;">Preview / Practice</header>
+      <div class="body" id="preview"><div class="small">No content yet. Click Load to start, then Preview.</div></div>
+      <div class="body" id="practice" style="border-top:1px solid #eee;margin-top:8px;padding-top:8px;">
+        <div class="row" style="justify-content: space-between;">
+          <div class="row">
+            <button id="btn-play-full">Listen: Full</button>
+            <button id="btn-play-back">Listen: Backward chunks</button>
+          </div>
+          <div class="row">
+            <button id="btn-pass" class="primary">Mark Pass</button>
+            <button id="btn-reset">Reset</button>
+          </div>
+        </div>
+        <div class="small" id="stats">pass: 0 / 6</div>
+        <div id="tones" class="row" style="margin-top:6px;flex-wrap:wrap;"></div>
+        <div style="margin-top:6px;"><div class="small" style="margin-bottom:4px;">CCQ</div><div id="ccq"></div></div>
+      </div>
+    </section>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>
